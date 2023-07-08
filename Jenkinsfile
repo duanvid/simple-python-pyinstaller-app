@@ -16,7 +16,8 @@ node {
 
   stage('Manual Approval') {
     input(message: 'Lanjutkan ke tahap Deploy?', ok: 'Proceed', submitter: 'user', parameters: [
-      booleanParam(defaultValue: false, description: 'Apakah anda ingin melanjutkan ke tahap Dep>    ])
+      booleanParam(defaultValue: false, description: 'Apakah anda ingin melanjutkan ke tahap Deploy?', name: 'proceedToDeploy')
+    ])
   }
 
   stage('Deploy/Deliver') {
@@ -30,4 +31,3 @@ node {
     sh "docker run --rm -v ${env.VOLUME} ${env.IMAGE} 'rm -rf build dist'"
   }
 }
-
